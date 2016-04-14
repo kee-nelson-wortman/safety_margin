@@ -1,0 +1,449 @@
+\documentclass[review]{elsarticle}
+%\documentclass{elsarticle}
+
+\usepackage{lineno,hyperref}
+\modulolinenumbers[5]
+
+\usepackage[printonlyused]{acronym}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{mathtools}
+\usepackage[version=3]{mhchem}
+\usepackage[labelfont=bf,font={footnotesize}]{caption}
+\usepackage[labelfont=bf,font={footnotesize}]{subcaption}
+\usepackage{color}
+
+\usepackage{amsthm,gensymb}
+\usepackage{longtable}
+
+\usepackage{booktabs,listings,soul,multirow,comment}
+
+\journal{TBD}
+
+%%%%%%%%%%%%%%%%%%%%%%%
+%% Elsevier bibliography styles
+%%%%%%%%%%%%%%%%%%%%%%%
+%% To change the style, put a % in front of the second line of the current style and
+%% remove the % from the second line of the style you would like to use.
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Numbered
+%\bibliographystyle{model1-num-names}
+
+%% Numbered without titles
+%\bibliographystyle{model1a-num-names}
+
+%% Harvard
+\bibliographystyle{kee-nelson-wortman/bibliography/model2-names.bst}\biboptions{authoryear}
+
+%% Vancouver numbered
+%\usepackage{numcompress}\bibliographystyle{model3-num-names}
+
+%% Vancouver name/year
+%\usepackage{numcompress}\bibliographystyle{model4-names}\biboptions{authoryear}
+
+%% APA style
+%\bibliographystyle{model5-names}\biboptions{authoryear}
+
+%% AMA style
+%\usepackage{numcompress}\bibliographystyle{model6-num-names}
+
+%% `Elsevier LaTeX' style
+%\bibliographystyle{elsarticle-num}
+%%%%%%%%%%%%%%%%%%%%%%%
+
+%% The ridiculous Nuclear Technology Citation
+%\bibliographystyle{ieeetr}
+
+%\renewcommand\thetable{\Roman{table}} %Roman numeral table numbers!!!
+
+\usepackage{cleveref}
+
+\input{acronym}
+%
+
+\begin{document}
+\begin{frontmatter}
+
+\title{TBD}
+%\tnotetext[mytitlenote]{Fully documented templates are available in the elsarticle package on \href{http://www.ctan.org/tex-archive/macros/latex/contrib/elsarticle}{CTAN}.}
+
+%% Group authors per affiliation:
+%\author{Elsevier\fnref{myfootnote}}
+%\address{Radarweg 29, Amsterdam}
+%\fntext[myfootnote]{Since 1880.}
+
+%% or include affiliations in footnotes:
+\author[a]{\corref{mycorrespondingauthor}}
+%\ead[url]{www.tamu.edu}
+\cortext[mycorrespondingauthor]{Corresponding author}
+\ead{}
+
+\author[a]{}
+
+
+%\address[mymainaddress]{3100 TAMU, College Station, TX 77483}
+%\address[mysecondaryaddress]{Austin, TX}
+%\address[c]{Birmingham, AL}
+%\address[d]{Champaign, IL}
+
+
+\address[a]{TBD%, erniekee@tamu.edu
+}
+\begin{comment}
+\begin{abstract}
+A quantifiable method to obtain an ordered ranking of alternative maintenance policies in a simple system is summarized.
+Application of the ranking method to economic analysis of a regulated process is described.
+A new model for the impact of regulation and level of care on maintenance policy decision-making is
+presented.
+\end{abstract}
+
+\begin{keyword}
+RISMC \sep Maintenance policy \sep Decision analysis
+\end{keyword}
+\end{comment}
+
+\end{frontmatter}
+
+\section{Example}\label{sec:introduction}
+	We evaluate alternative designs for a simple, unreliable protection system shown in 
+	\Cref{fig:tuncsystem_reduced} designed to pump water in order to prevent catastrophic failure. 
+	Such systems are commonly used in many industrial processes and are frequently under
+	regulation; Standard For The Inspection, Testing, And Maintenance of Water-Based Fire Protection 
+	Systems, NFPA 25 and Domestic Licensing of Production and Utilization Facilities, 10 CFR Part 50 are
+	examples of a standard typically adopted in regulation and US federal regulation.
+	We assume a profit-making enterprise that operates for public good under regulation operates the 
+	simple system of \Cref{fig:tuncsystem_reduced} for regulatory compliance (for example, fire suppression).
+	
+	\begin{figure}[ht]
+	\centering
+	\includegraphics[width=0.7\textwidth]{kee-nelson-wortman/graphics/tuncsystem_reduced.png}
+	\caption{Illustration of a system simplified from \citet{t2013}The system normally operates to maintain 
+	the level in the tank with the fish at `x' based on output from L1 by intermittently  operating the pump 
+	P2 between the levels $\alpha_1$ and $\alpha_2$. L1 causes P2 to  start when level reduces to 
+	$\alpha_1$ and stop when level reaches $\alpha_2$. At level  $\tilde{a}$, P1 stops, and at level 
+	$\tilde{b}$, P2 stops.}. 
+	\label{fig:tuncsystem_reduced}
+	\end{figure}
+	
+	We assume different maintenance policies can be adopted in order to avoid different catastrophes; 
+	property loss, pollution, wildlife injury or death, injuries to human life from illness to death.
+	A fundamental premise is that such alternative maintenance policies are available and
+	can be effected at different cost with different levels of system reliability.
+
+\begin{comment}
+	We assume a time-dependent market price for the product the system supports and a
+	time-independent level of production.
+	That is, there exists an ongoing competitively priced market for the product but any 
+	maintenance policy chosen will not change the level of production (activity); however 
+	others in the market similarly unable to change production levels can affect the 
+	market price over time.
+		
+	In general, the cost for nuclear power equipment maintenance, in the absence of
+	subsidies (such as regulated electricity markets, or subsidized `green energy') has higher cost 
+	(due to greater level of care) than for other electricity production models.
+	We assume a desire to investigate alternative maintenance polices against high cost of
+	maintenance motivated by improved profit.
+	Finally, because we will later describe loss models, we assume the expected loss for any
+	given maintenance policy is fixed.
+
+	An example of the activity we describe under the assumptions above are closely related
+	to a merchant nuclear power plant operated in the United States national electrical grid.
+	These plants have a nearly constant cost of production and to cover cost of production, 
+	operate continuously at maximum power output.
+	However, the nuclear production level represents only about 20\% of total electrical production
+	on the national grid.
+	Almost all of the remaining the electrical grid demand is satisfied by coal, gas, and oil plants.
+	Because fossil fuel prices swing a great deal over time (primarily natural gas), about 80\% of the electricity market 
+	reflects those prices; market price of nuclear power production must follow (at least on downswings) 
+	to some extent in order to stay in the market at the 20\% level.
+			
+	We generally follow an approach \citet{8993548820130601} recommends, but extend 
+	his method %to the \ac{rismc} domain and assert that 
+	to include formal risk analysis, as is done in \ac{pra}, 
+	for cost of due care desired in the negligence rule as described by \citeauthor{8993548820130601}.
+	For now, we ignore contributory negligence such as public disregard of warning sirens or
+	notification of impending danger due to system failures provided by the system operator.
+	It is clear shared liability is indicated; the public should maintain a reasonable evacuation 
+	capability and response when clear warnings are given \citep[for example][in nulcear accidents]{edselc.2-52.0-002243974919860101} and \citep[for example][in a consequential response to volcano warnings]{469228419860302,2W6257764379020150518}.
+	We believe, under the assumptions taken in here, the level of care asked for in liability 
+	evaluation can be related (through \ac{pra}) to successful accident avoidance associated 
+	with the maintenance policy chosen by the enterprise.
+
+\end{comment}
+%	In particular, we follow Shavell's simplification that the cost of verifying compliance with 
+%	regulation is incurred for sure but the cost of evaluating compliance is experienced 
+%	only with the probability that harm occurs. 
+%	As he asserts, the negligence rule consequentially involves lower expected enforcement 
+%	costs than regulation.
+	
+%\input{paul}
+
+\subsection{Analysis of system design}\label{sec:analysis}
+	We analyze the system operation as follows.
+	When a perturbation (initiating event such as fire or a need for supplemental cooling water) occurs, 
+	P1 must start up and deliver water at design pressure.
+	As P1 delivers water, the tank level, $x$, decreases until it reaches $\alpha(1)$.
+	At $\alpha(1)$, L1 sends a signal to actuate P2 to refill the tank until the level reaches
+	$\alpha(2)$.
+	In our analysis, if any equipment fails, P1, P2 or L1, then the system is assumed to fail 
+	catastrophically.
+	
+	To maintain clarity and reduce complexity, we ignore many aspects that must 
+	be considered in an actual system design evaluation where catastrophic failure would cause harm 
+	to the public.
+	Coincident failures may need to be taken into account; the triggering event may cause multiple 
+	protection system failures or system failures may occur independently from different causes.
+	Consideration of public disregard or failure of warning sirens or notifications of impending danger 
+	should be included.
+	Of course, some public burden must be assumed; the public should maintain a reasonable evacuation 
+	capability and response when clear warnings are given \citep[for example][in nuclear accidents]{edselc.2-52.0-002243974919860101} and \citep[for example][in a consequential response to volcano warnings]{469228419860302,2W6257764379020150518}.
+	
+%	We are assuming the negligence rule applies and therefore at a certain level of care, the
+%	enterprise (injurer) is (theoretically) relieved of liability.
+%	Victims of certain nuclear accidents would be compensated through private insurance
+%	up to a required amount \citep{pa1957,9939787020141101}.
+%	In here we take the insurance cost to be a sunk cost and exclude it from further consideration.
+	
+\subsection{Alternatives}\label{sec:alternatives}
+	Now we assume an engineer is responsible for the performance of P1, P2 and L1.
+	She is tasked with defining maintenance policy that includes safety margin against failure.
+	%We recognize the system is designed unreliably given the possible consequences for failure however
+	%we assume the design for the purposes of illustration.
+	That is, the only maintenance policy available to the engineer is modifications with associated cost 
+	implications that result in different failure probabilities that change with safety margin of the three 
+	devices included in the system.
+	
+	We assume the alternatives, (\Cref{tab:alternatives} column Alt.), enumerated in \Cref{tab:alternatives} with 
+	maintenance policy costs and failure probabilities for each Alternative are; maintenance cost $A(\cdot)$,  
+	failure probability $a(\cdot)$; maintenance cost $B(\cdot)$, failure probability $b(\cdot)$; and maintenance cost $C(\cdot)$
+	has failure probability $c(\cdot)$.
+	For now, we assume the costs are known exactly, leaving only the reliability of the maintenance policy uncertain.
+				
+	\begin{table}[ht]
+	\caption{Alternative (Alt.) maintenance policies, \{$a(\cdot)$,$b(\cdot)$,$c(\cdot)$\}, available to the engineer. 
+	Each alternative policy has a different associated cost.}
+	\centering
+	\begin{tabular}{l lll | l lll | l lll} \\
+	\toprule
+	Alt. & P1		&	L1		&	P2		& Alt. & P1		&	L1		&	P2		
+	& Alt. &  P1		&	L1		&	P2		\\ \midrule
+		
+	0 &		$a(0)$		&	$b(0)$		&	$c(0)$			&	12 &		$a(1)$	&	$b(1)$	&	$c(0)$		
+	&	24 &	$a(2)$	&	$b(2)$	&	$c(0)$	 \\
+
+	1 &		$a(0)$		&	$b(0)$		&	$c(1)$		&	13 &		$a(1)$	&	$b(1)$	&	$c(1)$	
+	&	25 &		$a(2)$	&	$b(2)$	&	$c(1)$ \\
+
+	2 &		$a(0)$		&	$b(0)$		&	$c(2)$		&	14 &		$a(1)$	&	$b(1)$	&	$c(2)$	
+	&	26 &		$a(2)$	&	$b(2)$	&	$c(2)$ \\
+		
+	3 &		$a(0)$		&	$b(1)$	&	$c(0)$			&	15 &		$a(1)$	&	$b(2)$	&	$c(0)$		& & & \\
+	4 &		$a(0)$		&	$b(1)$	&	$c(1)$		&	16 &		$a(1)$	&	$b(2)$	&	$c(1)$	& & & \\
+
+	5 &		$a(0)$		&	$b(1)$	&	$c(2)$		&	17 &		$a(1)$	&	$b(2)$	&	$c(2)$	& & & \\
+
+	6 &		$a(0)$		&	$b(2)$	&	$c(0)$			&	18 &		$a(2)$	&	$b(0)$		&	$c(0)$		& & & \\
+
+	7 &		$a(0)$		&	$b(2)$	&	$c(1)$		&	19 &		$a(2)$	&	$b(0)$		&	$c(1)$	& & & \\
+
+	8 &		$a(0)$		&	$b(2)$	&	$c(2)$		&	20 &		$a(2)$	&	$b(0)$		&	$c(2)$	& & & \\
+
+	9 &		$a(1)$	&	$b(0)$		&	$c(0)$		&	21 &		$a(2)$	&	$b(1)$	&	$c(0)$		& & & \\
+		
+	10 &		$a(1)$	&	$b(0)$		&	$c(1)$	&	22 &		$a(2)$	&	$b(1)$	&	$c(1)$	& & & \\
+
+	11 &		$a(1)$	&	$b(0)$		&	$c(2)$	&	23 &		$a(2)$	&	$b(1)$	&	$c(2)$	& & & \\ \bottomrule
+	\end{tabular}
+	\label{tab:alternatives}
+	\end{table}%
+
+	\subsection{Distribution on alternatives}\label{sec:distribution_on_alternatives}
+		A naive failure logic in event tree format is shown in \Cref{fig:tuncsystem_reduced_event_tree}.
+		For purposes of illustration, we accept for now the simplicity implied by this logic and leave more
+		complete analysis to future work \citep[see][for example]{zkrkm2013,t2013}.
+	
+		\begin{figure}[ht!]
+		\centering
+		\includegraphics[width=0.9\textwidth]{kee-nelson-wortman/graphics/tuncsystem_reduced_event_tree.png}
+		\caption{Illustration of the event tree logic for the system, assuming P1 has failure probability a,
+		L1 has failure probability b, and P2 has failure probability c and showing all possible outcomes.}
+		\label{fig:tuncsystem_reduced_event_tree}
+		\end{figure}
+
+		Referring to \Cref{fig:tuncsystem_reduced_event_tree}, each alternative's success probability 
+		could be worked out from the event tree solution. 
+		Further, we assume the failure probabilities are uncertain and the engineer knows
+		the distribution for a basic design \citep[][for example]{ewgra2007}.
+		For example, Alternative~3 would work out to be:
+		\begin{equation}\label{eq:event_tree_solution}
+		p[SUCCESS|I,Alt(3)] = [1-a(0)][1-b(1)][1-c(0)] \nonumber
+		\end{equation}		
+		\noindent and the cost, $\mathbb{C}(3)$, would work out to be	
+		\begin{equation}
+		\mathbb{C}(3) = A(0) + B(1) + C(0). \nonumber
+		\end{equation}
+		\noindent By assumption, the distribution on $p[SUCCESS|I,Alt(3)]$ is only
+		dependent on the maintenance policy assigned (known by the engineer).		
+
+		\begin{table}[ht]
+		\caption{Level transmitter (L1), turbine-driven pump (P1), and motor driven pump (P2) probability distributions
+		for 24 hours of operation and assuming rare event.}
+		\centering
+		\begin{tabular}{l c c c l}
+			& \multicolumn{3}{c}{NUREG 6928 Failure to run parameters} &				\\
+			& Mean		& $\alpha$ 	& $\beta$ 		& Failure probability, 24 hr		\\
+		L1	& 1.02E-07	& 0.5			& 4.92E+06	&  5.19E-05 				\\
+		P1	& 5.77E-06	& 3.422		& 5.93E+05	&  4.39E-03 				\\
+		P2	& 4.54E-06	& 1.655		& 3.65E+05	&  8.65E-05				\\
+		\end{tabular}
+		\label{tab:failure_parameters}
+		\end{table}%
+
+
+\begin{comment}
+		
+	\subsection{The level of care}\label{sec:the_level_of_care}
+		In our analysis, we assume the level of care taken by the engineer in order to avoid consequential
+		failures is the same as the success probability (SUCCESS in \Cref{fig:tuncsystem_reduced_event_tree}.
+		That is, by selecting maintenance policies that maximize $p[SUCCESS|I,Alt(\cdot)]$, she exercises
+		the maximum level of care.
+		
+		For now, it is useful to assume that the consequences of failure don't include internal costs of repair or losses
+		associated with destruction of the system such as burned equipment due to inadequate cooling
+		flow or overfilling of the tank causing overload breakage.
+		Instead we assume liabilities external to the system such as property damage, injury, and so forth as 
+		mentioned previously.
+		
+	\subsection{The utility}\label{sec:the_utility}			 
+		The utility, $u$, is assumed to be maximized when total cost is minimized; and the costs are constrained
+		to include only liability cost, $\ell(\cdot)$, and the cost of maintenance (\Cref{sec:the_level_of_care}).
+		Under the negligence rule beyond a certain level of care exercised, say $X^*$, the enterprise (in this case) would not
+		have liability for consequences.
+		
+		\subsubsection{Level of care}\label{sec:the_level_of_care}
+			We propose the level of care is entirely defined by $p[SUCCESS|I,Alt(\cdot)]$ and therefore the cost
+			at any level of care is $X[Alt(\cdot)]$.
+			Given 
+%			The cost function for the level of care is therefore
+%			\begin{equation}
+%			\begin{split}
+%			X(j) & = \mathbb{C}(j);\, \text{for} \, j \le j^*, \\
+%			X(j) & = 0.0;\, \text{for} \, j > j^*,
+%			\end{split}
+%			\end{equation}			
+%			\noindent where $j$ is the index on $p[SUCCESS|I,Alt(j)]$ ordered such that
+%			\begin{equation}
+%			\begin{split}
+%			 & p[SUCCESS|I,Alt(0)] \ge p[SUCCESS|I,Alt(1)] \ge   \nonumber \\
+%			& p[SUCCESS|I,Alt(2)] \ge \,  \ldots \, \ge p[SUCCESS|I,Alt(26)].  \nonumber
+%			\end{split}
+%			\end{equation}
+			 
+%		\subsubsection{The loss}\label{sec:the_loss}
+			\noindent We assume the loss, $\ell(\cdot)$, associated with a (consequential) system failure 
+			decreases monotonically with level of care as illustrated in \Cref{fig:utility} \citep[][]{8993548820130601}.					
+			\begin{figure}[ht]
+			\centering
+			\includegraphics[width=0.9\textwidth]{kee-nelson-wortman/graphics/utility.png}
+			\caption{Conceptual illustration of the total accident cost assuming the level of care
+			is defined by the failure probability.  Shown in the figure is the point in level of
+			care at the optimal level, $X^*$,beyond which no further liability is realized.}
+			\label{fig:utility}
+			\end{figure}	
+			\noindent Although there exists a unique value for $X^*$ for the case shown in 
+			\Cref{fig:utility}, it is possible that $X^*$ may not be unique and may not exist.
+			That is, there are no restrictions on $C(\cdot)$ or $\ell(\cdot)$ that would force
+			existence and uniqueness.
+			We can say that, given $X^*$ is not unique, a profit-making enterprise would 
+			choose the first $X^*$ (lowest cost) since the accident cost may never be realized.
+			\textcolor{blue}{I wonder if this is true? It could be a choice for least damage as well ...}
+			
+			The total accident cost, $\mathbb{T}(j)$, under maintenance policy $Alt(j)$ will be
+			limited by the policy $Alt(j^*)$ where the appropriate level of care is met,
+			\begin{equation}
+			\begin{split}
+			\mathbb{T}(j) = X(j) + \ell \, \overline{\{p[SUCCESS|I,Alt(26)]\}},
+			\end{split}
+			\end{equation}
+			\noindent and the costs, $X(\cdot)$ and $\ell(\cdot)$ are taken to be positive so
+			where they appear with positive values (revenue) they will be subtracted.
+
+	\subsection{Profit}
+		Under the assumptions and definitions we have, the utility function for the level
+		of care considering maintenance policy would indicate profit $\mathbb{P}(\cdot)$ assuming
+		revenue $\mathbb{R}(T)$ over some time period, $T$,
+		\begin{equation}\label{eq:profit_equation_certain}		
+		\mathbb{P}(T,j) = \begin{cases} \mathbb{R}(T) - X(j^*)-\ell \,\overline{\{p[SUCCESS|I,Alt(j^*)]\}} & \mbox{if} \; j \ge j^*    \\
+					\mathbb{R}(T) - X(j)-\ell \,\overline{\{p[SUCCESS|I,Alt(j)]\}} & \mbox{if} \;j < j^* \end{cases}
+		\end{equation}
+		\noindent where losses (as shown in the figure) are taken to be positive.
+		
+	\subsection{On the behavior}
+		It isn't necessary that the level of care cost function, as we define it, to behave such that cost 
+		strictly increases with increasing level of care.
+%		In fact, enterprises engaged in long term process improvement may prioritize projects in such a way
+%		to maximize spending under uncertainty \citep[][for example]{4908616120091001}.
+		That is, one could imagine a new design for a replacement part that has greater reliability
+		at much lower cost.
+		When the engineer selects that product in her maintenance policy, the level of care (as we
+		define it) is higher but at lower cost than for a policy that doesn't include the new design.
+		We assume \citep{pa1957}, $\mathbb{P}(T,j)$ is maximized when the level of care is at $j^*$
+		so the enterprise would normally choose to operate on the maintenance policy corresponding 
+		to $j^*$.
+		If cases are observed where $j^*$ is not uniquely determined, one might expect the enterprise to adopt
+		the least cost policy.
+	
+\section{Preference ordering}\label{sec:preference_ordering}
+	We previously assumed the engineer can know the reliability and cost for the maintenance policy
+	she adopts.
+	However, it is unlikely she knows either of these parameters exactly; she may only know a range of
+	likely performance and cost.
+	Also, knowing $\ell(\cdot)$ and $\mathbb{R}(\cdot)$ is likely to be even more challenging than 
+	the equipment-related parameters.
+	Because of this, finding $j^*$ is challenging and fraught with uncertainty.
+	
+	However, it might be reasonable to ask the engineer (in the absence of more detailed information)
+	if she can at least give a ranges of values for $E\{\mathbb{R}(T)\}$; $E\{A(j)\}$, $E\{B(j)\}$, $E\{C(j)\}$;
+	$E\{\ell\{p(j)\}$; $E\{a(j)\}$, $b\{A(j)\}$, $E\{e(j)\}$.
+	With these expected value ranges, we would be able to develop an uncertainty distribution, $\mathcal{F}(\cdot)$,
+	on $\mathbb{P}(\cdot)$.	
+	With $\mathcal{F}(\cdot)$ in hand, a normative ordering for the utility, $\mathbb{P}(T,i)$ can be effected as:
+	\begin{equation}\label{eq:utility_ordering}
+	\int_{l_{max}(i)}^{l_{min}(i)}{\mathbb{P}(T,i) d \mathcal{F}(\mathbb{P}(T,i)) } \ge \int_{l_{max}(i-1)}^{l_{min}(i-1)}
+	{\mathbb{P}(T,i-1) d \mathcal{F}(\mathbb{P}(T,i-1)) }
+	\end{equation}	
+	\noindent where, depending on $\mathcal{F}(\mathbb{P}(T,i-1))$, the uncertainty could shift the ordering from 
+	\eqref{eq:profit_equation_certain}.
+%	\begin{figure}[ht]
+%	\centering
+%	\includegraphics[width=0.9\textwidth]{graphics/utility_function.png}
+%	\caption{Illustration of a possible derivation of the utility function $u(\cdot)$ from the event tree 
+%	solution for on the distribution of $p()$ (having quantiles $q$ and $\tilde{q}$).}
+%	\label{fig:utility_function}
+%	\end{figure}
+	
+%	\subsection{Cost}\label{sec:cost}
+%		Our economic investigation considers four entities enumerated below 
+%		having interest in the outcomes of consequential system failures.
+		
+%		\begin{enumerate}
+%		\item The owner-operator
+%		\item The engineer
+%		\item The regulator
+%		\item The courts
+%		\end{enumerate}
+
+\section{Conclusions}\label{sec:conclusions}
+	An event tree structure can be used to find alternative costs as distributions which, in turn
+	are useful as definitive cost models in Shavell's stylized model.
+	
+	
+	
+\end{comment}
+	
+%	\bibliographystyle{chicago}
+	\bibliography{kee-nelson-wortman/bibliography/safety_margin.bib}
+
+\end{document}  
