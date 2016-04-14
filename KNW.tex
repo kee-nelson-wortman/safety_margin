@@ -1,0 +1,214 @@
+\documentclass[12pt]{article}
+
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amsmath, amsthm, amssymb}
+\usepackage[mathcal]{euscript}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{epsfig}
+\usepackage{array}
+\usepackage[usenames]{color}
+\usepackage{draftwatermark}
+\usepackage{authblk}
+\usepackage{setspace}
+\usepackage{apacite}
+\usepackage{natbib}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+\newtheorem{axiom}{Axiom}
+\newtheorem{observation}{Observation}
+\setlength{\hoffset}        {0.0in}
+\setlength{\topmargin}      {0.2in}
+\setlength{\oddsidemargin}  {0.5in}
+\setlength{\textheight}     {8.5in}
+\setlength{\textwidth}      {6.3in}
+\setlength{\hoffset}        {-0.3in}
+\setlength{\voffset}        {-0.5in}
+\setlength{\parindent}      {0.7cm}
+%\renewcommand{\baselinestretch}{1.9}
+
+
+\SetWatermarkText{\copyright 2016 -- Kee, Nelson, \& Wortman}
+\SetWatermarkLightness{ 0.93 }
+\SetWatermarkScale{2}
+
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\author[1]{Ernest Kee}
+\author[1]{Paul Nelson}
+\affil[1]{Department of Nuclear Engineering}
+
+\author[2]{Martin Wortman}
+\affil[2]{Department of Industrial \& System Engineering\\
+Texas A\&M University}
+
+\date{\today}
+\title{Protective Systems: Margins of Safety,  Information, and the Calculus of Negligence}
+
+\begin{document}
+
+\maketitle
+\begin{abstract}
+The design and operation of protective system is an essential engineering responsibility.  Ensuring public safety must be accomplished at a feasible cost. Design choices are gauged with respect to benefit (both enterprise profit and social benefit) and cost (both enterprise cost and social cost) often within the oversight of regulatory authority. We offer analytical arguments that establish the relationship between margin of safety, information, and the calculus of negligence.\footnote{The calculus of negligence, or ``Hand Rule", is a legal standard applied to establish liability  for harm, if the harm could be avoided for less than the cost of the harm.}  This relationship provides a criterion for evaluating whether or not a chosen margin of safety is congruent with available information gained through predictive modeling of protective system operation.
+
+
+\end{abstract}
+
+\pagebreak
+\doublespacing
+
+\section{Tenets of Protective System Design}
+
+Protective measures are deployed almost without exception whenever technology operates in situations where its failure can cause significant financial and/or physical harm.  Today, engineers are responsible for developing and operating sophisticated protective systems that integrate hardware, personnel, and information to ensure public safety. 
+When protective systems fail to mitigate catastrophic events, liability must be determined through regulatory response, judicial inquiry, or both. 
+It is every engineer's nightmare that they might be the source responsible for an error in design or operations that caused the failure of a protective system.
+
+%ejk
+%\textcolor{red}{Do you guys think we should consider ``safety'' in the way \citet{hansson2012} defines it (actually, I think he says we have to think about saying things like ``safer than'' rather than safe or safety. I think it fits with everything we are saying here - that design needs to be safer than the regulation with margin.Is that a right concept?}
+
+%maw
+\textcolor{blue}{Yes.  I agree with Hansson safety should be addressed in ordinal (rather than cardinal) fashion.}
+
+%ejk
+\textcolor{green}{{\bf \underline{Is this paragraph appropriate here (or anywhere)?}}:
+When thinking about `safety', the engineer generally has in mind a design point where catastrophic failure is less likely than another deisgn point (`unsafe design point'); 
+designs less likely to fail \emph{when compared to another design} are more `safe' \citet{hansson2012}.
+We are particularly interested designs that have more (or less) failure likelihood when compared to those meeting 
+regulatory standards; recognizing such standards may be difficult to define \citep[][for example]{Bjelland2013}.
+}
+
+The uncertainties associated with the efficacy of protection are difficult to identity and (when identified) extremely difficult to quantify.  Protective systems are exceptional in the endeavor of engineering design in that they must be created and operated, while ALL stakeholders hope that the circumstances for which the protection is deployed will never actually occur.  It is well-understood that the most reliable conceivable safety technologies and protective system are rarely deployed because of cost; there always exist tradeoffs between safety and expense; hence, protective systems are necessarily the focus of much engineering analysis both mathematical and empirical. Stress--testing protective systems with real--life catastrophes is obviously not a desirable source of information in engineering design. Further, engineers cannot avoid design decisions simply because operational experience (\emph{e.g.,} catastrophic event data) is limited.  In the absence of rich operational data, it is important to address uncertainty in a manner consistent with the best available theory and analytics.  When the stakes are truly high, there is no room for \emph{ad hoc} methods or anecdotal reasoning.
+
+In the developments that follow, we appeal to the well--accepted tenets of utility theory and the Kolmorogov axiomization of probability measure.  In doing so, we place ourselves in the mainstream of established economic theory, mathematics, and epistemology. We will build our arguments beginning with the expected utility theorem and develop results that reveal the relationship between margin of safety, information, and prudent engineering decisions in the design and operation of protective systems.
+
+Consider a situation where a regulated enterprise will deploy a technology that has been selected on the basis of public safety requirements revenue, and social costs; generally regulatory constraints are enforced that cause the enterprise to find the enhanced safety of the selection preferable to all other candidate technologies that could serve (the identical) future demand trajectories. In what follows, we will explore the ``\emph{margin of safety}" associated with the preferred selection, and we shall assume that the technology selection decision follows all tenets of the \emph{von Neumann -- Morgenstern Expected Utility Theorem}. All candidate technologies would face identical future demand, generating identical revenue trajectories so long as the technology does not suffer catastrophic failure ending its useful life.  While the lifecycle costs can differ significantly among various technology alternatives, lifecycle revenues are assumed identical. The regulatory environment is captured through social welfare function $u: \mathbb{R} \rightarrow \mathbb{R}$ on the value of all alternative technologies.
+\bigskip
+
+\noindent
+\textbf{Analytical Framework}
+
+In the arguments to follow, we have need to identify multiple probability spaces. In the interest of manageable notation, we adopt the de Finetti notation.  Here, for a random variable $X$ defined on the probability space $(\Omega, {\cal{F}}, P)$ where the traditional expectation integral $E[X]$ is replaced by $P(X)$.
+
+Let all candidate technologies, available for possible selection by the enterprise, be indexed with indices belonging to the set ${\cal{A}}$ where
+ $\alpha^* \in {\cal{A}}$ is the preferred technology. Thus, we have a collection of probability spaces $\{(\Omega_\alpha, {\cal{F}}_\alpha, P_\alpha);  \alpha \in {\cal{A}}\}.$  For each alternative $\alpha \in \ {\cal{A}},$ define on $\{(\Omega_\alpha, {\cal{F}}_\alpha, P_\alpha)$ the random variables:
+ 
+ $V_\alpha: \Omega_\alpha \rightarrow  \mathbb{R}$, the net present value of technology alternative $\alpha$,
+ 
+ $C_\alpha: \Omega_\alpha \rightarrow  \mathbb{R}_+$, the lifecycle cost of alternative $\alpha$,
+ 
+ $\chi_\alpha: \Omega_\alpha \rightarrow  \{0, 1\}$, where $\chi_\alpha = 1$ on the event that the lifetime of alternative $\alpha$ terminates in catastrophe.
+ 
+ \noindent
+ Inasmuch as the enterprise has rationally selected technology alternative $\alpha^* \in {\cal{A}}$, it follows from the expected utility theorem that 
+ \begin{equation}\label{EUT}
+ \alpha^* = \argmax_{\alpha \in {\cal{A}}} P_\alpha(u \circ V_\alpha).
+ \end{equation}
+Note that, since %ejk: all 
+any selected technology must follow the same demand trajectory, we have that $V_\alpha = -C_\alpha$,  $\forall \alpha \in {\cal{A}}.$  Hence, it follows that eq(\ref{EUT}) can be rewritten as 
+
+$$\alpha^* = \argmin_{\alpha \in {\cal{A}}} P_\alpha(u \circ C_\alpha)$$
+where, $P_\alpha(u \circ V_\alpha)$ is the \emph{expected lifecycle social cost} of technology alternative $\alpha \in {\cal{A}}$.
+
+
+It is important to recall that technology $\alpha^*$ is selected because regulation has imposed a value on public safety (implicitly represented by the social welfare mapping $u$), which reflects the high social cost associated with catastrophic failures that terminate technology lifecycle. Thus, is it useful to explore lifecycle social costs on catastrophic events. In this way we can investigate the margin of safety that certain non-optimal alternatives might enjoy over  $\alpha^*$.  To this end, note that the expected lifecycle social cost can be written as, 
+
+$$P_\alpha(u \circ C_\alpha) = P_\alpha(P_\alpha(u \circ C_\alpha | \chi_\alpha)), \forall \alpha \in {\cal{A}},$$
+ or
+ \begin{equation} \label{nested}
+ P_\alpha(u \circ C_\alpha) = P_\alpha(u \circ C_\alpha | \chi_\alpha = 0)P_\alpha(\chi_\alpha = 0) + P_\alpha(u \circ C_\alpha | \chi_\alpha = 1)P_\alpha(\chi_\alpha = 1)
+\end{equation}
+
+\noindent
+As a matter of convenience, we define 
+
+$c_\alpha^g \triangleq P_\alpha(u \circ C_\alpha | \chi_\alpha = 0)$, the expected social cost of alternative $\alpha$ on the event that lifecycle terminates \emph{without catastrophe},
+
+$c_\alpha^f \triangleq P_\alpha(u \circ C_\alpha | \chi_\alpha = 1)$, the expected social cost of catastrophe--free lifecycle, 
+
+\noindent
+and,
+
+$p_\alpha \triangleq P_\alpha(\chi_\alpha = 1),$ $\alpha \in {\cal{A}}.$
+
+\noindent
+Hence, eq(\ref{nested}) is rewritten as
+ \begin{equation} \label{fundamental}
+ P_\alpha(u \circ C_\alpha) = c_\alpha^g  + (c_\alpha^f - c_\alpha^g)p_\alpha ,  \forall \alpha \in {\cal{A}}. 
+ \end{equation}
+
+
+\noindent
+
+\noindent
+We shall refer to $ c_\alpha^p \triangleq (c_\alpha^f - c_\alpha^g)$ as the \emph{catastrophe--premium} of technology $\alpha$. Thus, eq(\ref{fundamental}) states that: 
+
+\noindent
+\emph{\textbf{For any technology alternative, its expected social cost is given by its expected social cost with catastrophe--free operation plus its catastrophe--premium weighted by the probability of catastrophe.}}
+
+It now follows from eq(\ref{EUT}) and eq(\ref{fundamental}) that for all $\alpha \ne {\alpha^*}$
+\begin{equation*}
+  c_{\alpha^*}^g  + (c_{\alpha^*}^f - c_{\alpha^*}^g)p_{\alpha^*} \le c_\alpha^g  + (c_\alpha^f - c_\alpha^g)p_\alpha
+\end{equation*}
+or,
+\begin{equation} \label{ineq}
+  c_{\alpha^*}^g  + c_{\alpha^*}^p p_{\alpha^*} \le c_\alpha^g  + c_\alpha^p p_\alpha.
+\end{equation}
+Rearranging eq(\ref{ineq}) into point--slope form gives
+\begin{equation*}
+%ejk: p_{\alpha^*} \le \frac{c_\alpha^p}{c_{\alpha^*}^p} p_\alpha - \frac{(c_{\alpha^*}^g - c_{\alpha}^g)}{c_\alpha^p}.
+p_{\alpha^*} \le \frac{c_\alpha^p}{c_{\alpha^*}^p} p_\alpha - \frac{(c_{\alpha^*}^g - c_{\alpha}^g)}{c_{\alpha^*}^p}.
+\end{equation*}
+We refer to $c_{({\alpha^*},\alpha)}^p \triangleq (c_{\alpha^*}^g - c_{\alpha}^g)$, the expected difference in social cost  between technology alternatives $\alpha^*$ and $\alpha$, as the \emph{reliability premium} of  choosing $\alpha^*$ over $\alpha \in {\cal{A}}$.  Note that it may happen that the reliability premium takes a negative value (as would be the case of rejecting a more reliable alternative because of its cost).
+Thus, it now follows that for all technology alternatives $\alpha \in {\cal{A}}$, 
+\begin{equation} \label{final}
+%ejk: p_{\alpha^*} \le \frac{c_\alpha^p}{c_{\alpha^*}^p} p_\alpha - \frac{c_{({\alpha^*},\alpha)}^p}{c_\alpha^p}.
+p_{\alpha^*} \le \frac{c_\alpha^p}{c_{\alpha^*}^p} p_\alpha - \frac{c_{({\alpha^*},\alpha)}^p}{c_{\alpha^*}^p}.
+\end{equation}
+
+\begin{figure}[ht]
+\centering
+	\includegraphics[width=0.7\textwidth]{graphics/point_slope.png}
+\caption{The relationship of $p_{\alpha^*}$ and $p_{\alpha}$, \eqref{final}, for a particular $p_{\alpha}$ value ($p_{\alpha}^{\text{\emph{1}}}$)}.
+\label{fig:point_slope}
+\end{figure}
+
+\noindent
+Engineers typically couch technology choices in terms system reliability and cost.  Eq(\ref{final}) shows that $\alpha^*$ is the most preferred technology only when its life cycle unreliability $p_{\alpha^*}$ is at least as small as the life cycle unreliability $p_{\alpha}$, for all $\alpha \in {\cal{A}},$ scaled by the quotient of catastrophe premiums less the quotient of the reliability premium to the un--preferred alternative's catastrophe premium.  Thus, the conditions set forth by the expected utility theorem can be understood in terms that are both analytically and intuitively specific to protective system design and operation. Of course, in practice, the particular values of elements that form eq(\ref{final}) are difficult to obtain since information (including event probabilities and social welfare function) is typically vague or incomplete. Nonetheless, the design decision of selecting the most preferred technology alternative cannot be avoided.
+
+%\begin{figure}[ht]
+%\centering
+%	\includegraphics[width=0.7\textwidth]{graphics/map_utility.png}
+%\caption{The margin realized with the preferred alternative when the alternative lifecycle terminates in catastrophe. By selecting the preferred
+%alternative, an allowance for safety over the minimum required can be demonstrated.}
+%\label{fig:point_slope}
+%\end{figure}
+
+{\color{red}Ernie \& Paul:  I have a figure that I plan to insert here.  I will explain this graphic when we next meet.  The plot in the figure  leads to a characterization of margin of safety. Also, it helps clarify the influence of incomplete information and gives a connection with the calculus of negligence.}
+
+\section{Regulatory Authority and Legal Liability}
+In practice, the particular values of elements that form eq(\ref{final}) are difficult to obtain since information (including event probabilities and social welfare function) is typically vague or incomplete. Nonetheless, the design decision of selecting the most preferred technology alternative cannot be avoided.
+
+%trim=l b r t
+\begin{figure}[ht]
+\centering
+	\includegraphics[clip=true,trim=4cm 13.2cm 4cm 3.2cm,width=0.7\textwidth]{graphics/pcplot.pdf}
+\caption{Eight technologies regulatively preferable to the social optimum; two of those are superoptimal or regulatively preferable to the social optimum, but no alternative technology `southwest' of them (that is, being both socially preferable and regulatively preferable).}
+\label{fig:point_slope}
+\end{figure}
+
+
+
+\bibliographystyle{chicago}
+\bibliography{bibliography/safety_margin.bib}
+
+\end{document}
+
+
+
+
+
+
